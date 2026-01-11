@@ -1,9 +1,11 @@
 #include <iostream>
-#include "include/InvestObject.hpp"
+#include "Obligation.hpp"
+#include "InvestmentManager.hpp"
 
 int main(){
-    std::cout<<"Investment calculator"<<std::endl;
-    InvestObject io{1000,5.6,10};
-    io.calcNextValue(6);
-    std::cout<<io.getCurrentValue()<<std::endl;
+    std::cout<<"Investment calculator starting..."<<std::endl;
+    InvestmentManager iManager{};
+    iManager.addInvestment<Obligation>(1000,5.6,10);
+    iManager.displayObjects();
+    iManager.callProperties();
 };
