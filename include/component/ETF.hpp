@@ -5,6 +5,5 @@
 
 class ETF : public InvestObject{
     public:
-        ETF(InvestType _it,double _initalValue, double _percentage,uint8_t years):InvestObject(_it,_initalValue,_percentage,years){
-        };
+        ETF(InvestType _it,double _initalValue, double _percentage,uint8_t years);
 };
