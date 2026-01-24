@@ -12,6 +12,6 @@ double InvestObject::getCurrentValue(){
     return value;
 };
 double InvestObject::getDaily(){
-    double dailyVal = (value * percentage)/daysInYear;
+    double dailyVal = ((value * percentage)/100)/daysInYear;
     return dailyVal;
 };

@@ -17,16 +17,6 @@ class InvestmentManager{
             properties.emplace_back(std::make_unique<T>(it,initalValue,percentage,years));
         };
         
-        template<typename T>
-        void printInvestment(std::vector<T>& v){
-            if(v.empty())
-            return;
-            printTypeHeader(v[0]->it);
-            for(const auto& t:v){
-                std::cout<<t->getCurrentValue()<<std::endl;
-            };
-        };
-
         template<InvestType>
         bool getType(std::unique_ptr<InvestType>&it){
             return false;
@@ -34,5 +24,6 @@ class InvestmentManager{
         void getInfo();
         void calcNextState(int years);
         void printTypeHeader(InvestType it);
+        void calculateDaily();
     };
 

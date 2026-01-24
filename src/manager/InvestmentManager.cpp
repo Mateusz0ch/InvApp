@@ -8,7 +8,6 @@ void InvestmentManager::getInfo(){
         printTypeHeader(o->it);
         std::cout<<o->getCurrentValue()<<std::endl;
     };
-    printInvestment<std::unique_ptr<ETF>>(etfs);
 };
 
 void InvestmentManager::calcNextState(int years){
@@ -20,13 +19,36 @@ void InvestmentManager::calcNextState(int years){
 void InvestmentManager::printTypeHeader(InvestType it){
     switch(it){
         case InvestType::ETF:
-            std::cout<<"ETF"<<std::endl;
+            std::cout<<"ETF: ";
             break;
         case InvestType::OBLIGATION:
-            std::cout<<"OBLIGATION"<<std::endl;
+            std::cout<<"OBLIGATION: ";
             break;
         case InvestType::STOCK:
-            std::cout<<"STOCK"<<std::endl;
+            std::cout<<"STOCK: ";
             break;
     };
 };
+
+void InvestmentManager::calculateDaily(){
+    using std::cout;
+    using std::endl;
+
+    double dailyETF = 0;
+    double dailyObligation = 0;
+    std::vector<std::unique_ptr<ETF>>etfs;
+    std::vector<std::unique_ptr<Obligation>>obligations;
+    for(std::unique_ptr<InvestObject>&u:properties){
+        switch(u->it){
+            case InvestType::OBLIGATION:
+                dailyObligation += u->getDaily();
+                break;
+            case InvestType::ETF:
+                dailyETF += u->getDaily();
+                break;
+        };
+    }
+    cout<<"Daily ETF: "<<dailyETF<<endl;
+    cout<<"Daily Obligation: "<<dailyObligation<<endl;
+    cout<<"Overall: "<<dailyETF + dailyObligation<<endl;
+}
